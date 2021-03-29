@@ -70,3 +70,15 @@ Route::get('/about', function(){
     return view('iti.aboutus');
 });
 
+Route::get('iti/tracks', function(){
+    $tracks = ["php", ".net", "mern"];
+    // $track = "MEAN";
+    return view('iti.tracks', ["data"=>$tracks]);
+});
+
+
+
+Route::get('/books', "App\Http\Controllers\BookController@booksindex");
+Route::get('/books/{bookid}', "App\Http\Controllers\BookController@show");
+
+// Route::get('/books', "App\Http\Controllers\BookController");

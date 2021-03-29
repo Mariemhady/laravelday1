@@ -3,7 +3,7 @@
 
 @section('danger')
     home page
-    Home page
+    <img src="{{ asset('images/img.png') }}" alt="tag">
 @endsection
 
 
