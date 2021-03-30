@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,8 +77,11 @@ Route::get('iti/tracks', function(){
 });
 
 
+// use App\Http\Controllers\StudentController;
 
 Route::get('/books', "App\Http\Controllers\BookController@booksindex");
 Route::get('/books/{bookid}', "App\Http\Controllers\BookController@show");
 
 // Route::get('/books', "App\Http\Controllers\BookController");
+
+Route::get('/students', [StudentController::class, "index"]);
