@@ -36,7 +36,13 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        Student::create($request->all()); //save database
+        $request->validate([
+            'name'=>'required|min: 3|max: 10',
+            'email'=>'required|email|',
+            'age'=>'numeric',
+            'phone'=>'numeric|starts_with:010,012,011'
+        ]);
+        Student::create($request->all()); //save database --> model $fillable
         return redirect()->route('students.index');
     }
 
@@ -48,7 +54,7 @@ class StudentsController extends Controller
      */
     public function show(Student $student)
     {
-       
+        return view("students.show", ["data"=>$student]);
     }
 
     /**
@@ -72,6 +78,14 @@ class StudentsController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+        // dump($request);
+        // dump($student);
+        $request->validate([
+            'name'=>'required|min: 3|max: 10',
+            'email'=>'required|email|',
+            'age'=>'numeric',
+            'phone'=>'numeric|starts_with:010,012,011'
+        ]);
         $student->update($request->all());
         return view("students.show", ["data"=>$student]);
     }
